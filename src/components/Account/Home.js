@@ -97,11 +97,13 @@ const Reference = styled.div`
         font-family: 'Raleway';
         font-weight: 400;
         font-size: 20px;
-        color: #79a1b0;
         line-height: 1.5;
         font-weight: 400;
         font-size: 20px;
-        color: #a4d0bb;
+        color: #79a1b0;
+    }
+    ion-icon{
+        color: #79a1b0;
     }
 `
 const Products = styled.div`
