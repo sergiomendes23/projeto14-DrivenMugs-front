@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../Context/UserContext';
 import axios from 'axios';
 
-
 export default function Home() {
-
+    const navigate = useNavigate();
     const { user } = useContext(UserContext);
     const [products, setProducts] = useState([]);
 
@@ -23,6 +22,8 @@ export default function Home() {
 
     function goToProductPage(id){
         console.log(id);
+        console.log(products[id]);
+        navigate('/product', {teste: products[id]});
     }
 
     return(
@@ -42,7 +43,7 @@ export default function Home() {
             <Products>
                 {products.map((product) => (
                     <Product key={product.id}>
-                        <img src={product.img}></img>
+                        <img src={product.img} alt={product.product}></img>
                         <p>{product.product}</p>
                         <h1>R$ {product.preco}</h1>
                         <Buy onClick={() => goToProductPage(product.id)}>Comprar</Buy>

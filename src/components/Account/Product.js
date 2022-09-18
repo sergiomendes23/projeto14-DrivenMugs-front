@@ -7,8 +7,8 @@ import UserContext from '../Context/UserContext';
 export default function ProductPage(props) {
 
     const { user } = useContext(UserContext);
-    //const { route } = props;
     //const { productId } = route.params;
+    console.log(props);
 
     const product = {
       id: 0,
@@ -31,6 +31,7 @@ export default function ProductPage(props) {
             <Reference>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
                 <h1>Produtos / {product.product}</h1>
+                <h1> Pegando info </h1>
             </Reference>
             <Body>
               <Product>
