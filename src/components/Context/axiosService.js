@@ -30,5 +30,23 @@ async function AddCart(id) {
 		console.error("Error: " + error.message);
 	}
 }
+async function CartCheckout(token) {
+	const config = {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	};
 
-export { getHomePage, getCartData, AddCart };
+	try {
+		await axios
+			.post(`${URI}/checkout`, config)
+			.then(() => console.log("Deu bom no checkout"));
+
+		return "Pedido realizado com sucesso";
+	} catch (error) {
+		console.error("Error: " + error.message);
+		return "Deu ruim parça";
+	}
+}
+
+export { getHomePage, getCartData, AddCart, CartCheckout };
