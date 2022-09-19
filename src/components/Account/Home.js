@@ -1,13 +1,9 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import UserContext from "../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 import { AddCart, getHomePage } from "../Context/axiosService";
 import Header from "../Header/Header";
 
 export default function Home() {
-	const { user } = useContext(UserContext);
-
 	const navigate = useNavigate();
 	const homePage = getHomePage;
 
@@ -19,7 +15,7 @@ export default function Home() {
 				<h1>Lista de produtos</h1>
 			</Reference>
 			<Products>
-				{/* {homePage.map((product) => {
+				{homePage.map((product) => {
 					return (
 						<>
 							<Product onClick={navigate(`/caneca/${product.id}`)}>
@@ -32,8 +28,8 @@ export default function Home() {
 							</Product>
 						</>
 					);
-				})} */}
-				
+				})}
+
 				{/*
 
 				<Product>
@@ -60,7 +56,6 @@ const Container = styled.div`
 	height: 100vh;
 	background-color: #eaeaea;
 `;
-
 
 const Reference = styled.div`
 	width: 100%;

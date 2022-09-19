@@ -23,9 +23,9 @@ async function getCartData(res) {
 }
 async function AddCart(id) {
 	try {
-		const cart = await axios.get(`${URI}/cart`).then(() => {
-			return cart;
-		});
+		await axios
+			.post(`${URI}/cart`, id)
+			.then(() => console.log("Deu bom no cart"));
 	} catch (error) {
 		console.error("Error: " + error.message);
 	}

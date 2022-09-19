@@ -1,13 +1,9 @@
-import { useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { getCartData } from "../Context/axiosService";
-import UserContext from "../Context/UserContext";
 import Header from "../Header/Header";
 
 export default function Cart() {
-	const { user } = useContext(UserContext);
-	// eslint-disable-next-line no-unused-vars
 	const data = getCartData;
 
 	return (
@@ -19,7 +15,7 @@ export default function Cart() {
 			</Reference>
 
 			<Products>
-				{/* {data.map((prod) => {
+				{data.map((prod) => {
 					return (
 						<>
 							<li>
@@ -28,17 +24,64 @@ export default function Cart() {
 										<img src={prod.img} alt="Product" />
 									</Image>
 									<div>
-										{prod.product}
+										<p>{prod.product}</p>
 										{prod.description}
 									</div>
-									{prod.preco}
+									<Price>
+										<h1>R$ {prod.preco}</h1>
+										<Remover>
+											<ion-icon name="trash-outline"></ion-icon>
+										</Remover>
+									</Price>
 								</Product>
 							</li>
 						</>
 					);
-				})} */}
+				})}
 
-				<Product>
+				{/* 				
+					//REVIEW - Se sobrar um tempo refatorar isso pra usar o cart sem token e pedir login na hora do checkout
+
+				{data.length>0 ? (
+					{ data.map( (prod) => {
+						return (
+							<>
+								<li>
+									<Product>
+										<Image>
+											<img src={prod.img} alt="Product" />
+										</Image>
+										<div>
+											<p>
+											{prod.product}
+											</p>
+											{prod.description}
+										</div>
+										<Price>
+											<h1>R$ {prod.preco}</h1>
+											<Remover>
+												<ion-icon name="trash-outline"></ion-icon>
+											</Remover>
+										</Price>							
+									</Product>
+								</li>
+							</>
+						);
+					})
+					}
+				) : (
+					<>
+							<h2>
+								Parece que seu carrinho esta vazio
+							</h2>
+							<Link to="/">
+								Compra ai Krai
+							</Link>
+						</>
+					)
+				} */}
+
+				{/* <Product>
 					<Image></Image>
 					<p>Caneca git commands</p>
 					<Price>
@@ -57,17 +100,8 @@ export default function Cart() {
 							<ion-icon name="trash-outline"></ion-icon>
 						</Remover>
 					</Price>
-				</Product>
-				<Product>
-					<Image></Image>
-					<p>Caneca git commands</p>
-					<Price>
-						<h1>R$ 39,90</h1>
-						<Remover>
-							<ion-icon name="trash-outline"></ion-icon>
-						</Remover>
-					</Price>
-				</Product>
+				</Product> */}
+
 				<Buy onClick={() => Navigate("/checkout")}>Fechar Pedido</Buy>
 			</Products>
 		</Container>
@@ -159,7 +193,7 @@ const Price = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-`
+`;
 const Remover = styled.button`
 	height: 35px;
 	border-radius: 50px;
@@ -170,7 +204,7 @@ const Remover = styled.button`
 	color: #ffffff;
 	border: none;
 	margin-top: 10px;
-	ion-icon{
+	ion-icon {
 		width: 24px;
 		height: 24px;
 	}

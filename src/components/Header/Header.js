@@ -3,34 +3,41 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../Context/UserContext";
 
-export default function Header(){
+export default function Header() {
+	const { user } = useContext(UserContext);
 
-    const { user } = useContext(UserContext);
-
-    return(
-			<Container>
-				<User>
-					<ion-icon name="person-outline"></ion-icon>
-					{user !== "" ? (
-						<h1>Olá, {user}</h1>
-					) : (
-						<>
-							<h1>
+	return (
+		<Container>
+			<User>
+				<ion-icon name="person-outline"></ion-icon>
+				{user !== "" ? (
+					<h1>Olá, {user}</h1>
+				) : (
+					<>
+						<h1>
+							{" "}
+							Faça
+							<LogLink to="/login" style={{ textDecoration: "none" }}>
 								{" "}
-								Faça
-								<LogLink to="/login" style={{ textDecoration: "none" }}> Login </LogLink>
-								ou
-								<LogLink to="/signup" style={{ textDecoration: "none" }}> Cadastre-se </LogLink>
-							</h1>
-						</>
-					)}
-				</User>
-				<Logo to="/" style={{ textDecoration: "none" }}>
-					Driven Mugs
-				</Logo>
+								Login{" "}
+							</LogLink>
+							ou
+							<LogLink to="/signup" style={{ textDecoration: "none" }}>
+								{" "}
+								Cadastre-se{" "}
+							</LogLink>
+						</h1>
+					</>
+				)}
+			</User>
+			<Logo to="/" style={{ textDecoration: "none" }}>
+				Driven Mugs
+			</Logo>
+			<Link to="/cart" style={{ textDecoration: "none" }}>
 				<ion-icon name="cart-outline"></ion-icon>
-			</Container>
-    )
+			</Link>
+		</Container>
+	);
 }
 
 const Container = styled.div`
