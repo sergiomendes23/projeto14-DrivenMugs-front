@@ -23,7 +23,7 @@ export default function Home() {
     function goToProductPage(id){
         console.log(id);
         console.log(products[id]);
-        navigate('/product', {teste: products[id]});
+        navigate(`/product/${id}`);
     }
 
     return(

@@ -1,22 +1,25 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import UserContext from '../Context/UserContext';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
+export default function ProductPage() {
 
-export default function ProductPage(props) {
-
+    const [product, setProduct] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     const { user } = useContext(UserContext);
-    //const { productId } = route.params;
-    console.log(props);
-
-    const product = {
-      id: 0,
-      product: "Caneca legal",
-      img: "https://cdn.awsli.com.br/600x450/608/608801/produto/25913910/caneca-github-956861b4.jpg",
-      description: "outra descricao igualmente complexa",
-      preco: "5,00"
-    }
+    const { id } = useParams();
+    useEffect(() => {
+        if (id == undefined || id == '') return;
+        const req = axios.get(`http://localhost:5000/caneca/${id}`);
+        req.then(res => {
+            console.log(res);
+            setProduct(res.data[0]);
+            setIsLoading(false);
+          });
+    }, [id]);
 
     return(
         <Container>
@@ -34,6 +37,7 @@ export default function ProductPage(props) {
                 <h1> Pegando info </h1>
             </Reference>
             <Body>
+                {!isLoading ? (
               <Product>
                 <div>
                   <img src={product.img}/>
@@ -44,7 +48,9 @@ export default function ProductPage(props) {
                   <h1>R$ {product.preco}</h1>
                   <Buy>Comprar</Buy>
                 </ProductInfo>
-              </Product>
+              </Product>)
+              : <></>
+              }
             </Body>
         </Container>
     )
