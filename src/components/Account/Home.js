@@ -2,11 +2,10 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "../Context/UserContext";
-import { getHomePage } from "../Context/axiosService";
-import { AddCart } from "./Cart";
+import { AddCart, getHomePage } from "../Context/axiosService";
 
 export default function Home() {
-    const { user } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 
 	const navigate = useNavigate();
 	const homePage = getHomePage;
@@ -39,8 +38,7 @@ export default function Home() {
 				<ion-icon name="chevron-forward-outline"></ion-icon>
 				<h1>Lista de produtos</h1>
 			</Reference>
-            <Products>
-                
+			<Products>
 				{homePage.map((product) => {
 					return (
 						<>
@@ -55,6 +53,8 @@ export default function Home() {
 						</>
 					);
 				})}
+				
+				{/*
 
 				<Product>
 					<Image></Image>
@@ -68,6 +68,8 @@ export default function Home() {
 					<h1>R$ 39,90</h1>
 					<Buy>Comprar</Buy>
 				</Product>
+				
+				*/}
 			</Products>
 		</Container>
 	);

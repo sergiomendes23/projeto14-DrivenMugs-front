@@ -12,7 +12,7 @@ async function getHomePage() {
   }
 }
 
-async function getCartData(req, res) {
+async function getCartData(res) {
   
   try {
     const cart = await axios.get(`${URI}/cart`);
@@ -24,7 +24,9 @@ async function getCartData(req, res) {
     
   }
 }
+function AddCart(id) {
+	return <></>;
+}
 
 
-
-export { getHomePage, getCartData };
+export { getHomePage, getCartData, AddCart };

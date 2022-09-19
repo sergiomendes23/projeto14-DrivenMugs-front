@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { Link, Navigate } from "react-router-dom";
 import styled from "styled-components";
+import { getCartData } from "../Context/axiosService";
 import UserContext from "../Context/UserContext";
 
-function Cart() {
+export default function Cart() {
 	const { user } = useContext(UserContext);
-	const data = getCartData();
+	// eslint-disable-next-line no-unused-vars
+	const data = getCartData;
 
 	return (
 		<Container>
@@ -38,7 +40,7 @@ function Cart() {
 			</Reference>
 
 			<Products>
-				{data.map((prod) => {
+				{/* {data.map((prod) => {
 					return (
 						<>
 							<li>
@@ -55,24 +57,38 @@ function Cart() {
 							</li>
 						</>
 					);
-				})}
+				})} */}
+
+				<Product>
+					<Image></Image>
+					<p>Caneca git commands</p>
+					<div>
+						<h1>R$ 39,90</h1>
+						<Remover>Remover</Remover>
+					</div>
+				</Product>
+				<Product>
+					<Image></Image>
+					<p>Caneca git commands</p>
+					<div>
+						<h1>R$ 39,90</h1>
+						<Remover>Remover</Remover>
+					</div>
+				</Product>
+				<Product>
+					<Image></Image>
+					<p>Caneca git commands</p>
+					<div>
+						<h1>R$ 39,90</h1>
+						<Remover>Remover</Remover>
+					</div>
+				</Product>
 
 				<Buy onClick={() => Navigate("/checkout")}>Fechar Pedido</Buy>
 			</Products>
 		</Container>
 	);
 }
-
-function getCartData() {
-	return <></>;
-}
-
-function AddCart(id) {
-	return <></>;
-}
-
-export { AddCart };
-export default Cart;
 
 const Container = styled.div`
 	width: 100vw;
@@ -142,7 +158,7 @@ const Products = styled.div`
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
+	overflow-x: scroll;
 `;
 const Product = styled.div`
 	width: 90vh;
@@ -154,7 +170,7 @@ const Product = styled.div`
 	background-color: #ffffff;
 	display: flex;
 	align-items: center;
-	flex-direction: column;
+	justify-content: space-between;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	p {
@@ -170,6 +186,10 @@ const Product = styled.div`
 		font-size: 20px;
 		color: #a4d0bb;
 		line-height: 0;
+	}
+	div {
+		align-items: center;
+		justify-content: center;
 	}
 `;
 
@@ -188,6 +208,18 @@ const Buy = styled.button`
 	font-weight: 400;
 	font-size: 14px;
 	background-color: #a4d0bb;
+	color: #ffffff;
+	border: none;
+	margin-top: 10px;
+`;
+const Remover = styled.button`
+	width: 150px;
+	height: 30px;
+	border-radius: 50px;
+	font-family: "Raleway";
+	font-weight: 400;
+	font-size: 14px;
+	background-color: red;
 	color: #ffffff;
 	border: none;
 	margin-top: 10px;
