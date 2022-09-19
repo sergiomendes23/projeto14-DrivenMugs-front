@@ -1,30 +1,25 @@
 import styled from 'styled-components';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../Context/UserContext';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-export default function Home() {
-    const navigate = useNavigate();
+export default function ProductPage() {
+
+    const [product, setProduct] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     const { user } = useContext(UserContext);
-    const [products, setProducts] = useState([]);
-
+    const { id } = useParams();
     useEffect(() => {
-        const req = axios.get('http://localhost:5000/canecas');
+        if (id == undefined || id == '') return;
+        const req = axios.get(`http://localhost:5000/caneca/${id}`);
         req.then(res => {
-            setProducts(res.data);
+            console.log(res);
+            setProduct(res.data[0]);
+            setIsLoading(false);
           });
-    }, []);
-    console.log(products);
-
-    //use navigate to go to product page. must pass ALL product info on params
-    //navigate('/product', {productId: id});
-
-    function goToProductPage(id){
-        console.log(id);
-        console.log(products[id]);
-        navigate(`/product/${id}`);
-    }
+    }, [id]);
 
     return(
         <Container>
@@ -38,18 +33,25 @@ export default function Home() {
             </Header>
             <Reference>
                 <ion-icon name="chevron-forward-outline"></ion-icon>
-                <h1>Lista de produtos</h1>
+                <h1>Produtos / {product.product}</h1>
+                <h1> Pegando info </h1>
             </Reference>
-            <Products>
-                {products.map((product) => (
-                    <Product key={product.id}>
-                        <img src={product.img} alt={product.product}></img>
-                        <p>{product.product}</p>
-                        <h1>R$ {product.preco}</h1>
-                        <Buy onClick={() => goToProductPage(product.id)}>Comprar</Buy>
-                    </Product>
-                ))}
-            </Products>
+            <Body>
+                {!isLoading ? (
+              <Product>
+                <div>
+                  <img src={product.img}/>
+                </div>
+                <ProductInfo>
+                  <h1>{product.product}</h1>
+                  <p>{product.description}</p>
+                  <h1>R$ {product.preco}</h1>
+                  <Buy>Comprar</Buy>
+                </ProductInfo>
+              </Product>)
+              : <></>
+              }
+            </Body>
         </Container>
     )
 }
@@ -114,18 +116,15 @@ const Reference = styled.div`
         color: #79a1b0;
     }
 `
-const Products = styled.div`
+const Body = styled.div`
     width: 100%;
-    height: 500px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-sizing: border-box;
+    height: 100vh;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
 `
 const Product = styled.div`
-    width: 170px;
-    height: 250px;
+    width: 700px;
+    height: 550px;
     box-sizing: border-box;
     padding: 10px;
     border-radius: 5px;
@@ -133,41 +132,51 @@ const Product = styled.div`
     background-color: #ffffff;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     margin-right: 10px;
     margin-bottom: 10px;
     img{
-        width: 150px;
-        height: 137px;
+        width: 360px;
+        height: 360px;
+    }
+    div{
+      width: 50%;
+      display: flex;
+      justify-content: center;
     }
     p{
-        font-family: 'Raleway';
-        font-weight: 400;
-        font-size: 14px;
-        color: #79a1b0;
-        line-height: 0;
+      font-family: 'Raleway';
+      font-weight: 400;
+      font-size: 16px;
+      color: #79a1b0;
+      line-height: 0;
     }
     h1{
-        font-family: 'Raleway';
-        font-weight: 400;
-        font-size: 20px;
-        color: #a4d0bb;
-        line-height: 0;
+      font-family: 'Raleway';
+      font-weight: 400;
+      font-size: 22px;
+      color: #a4d0bb;
+      line-height: 0;
+    }
+    button{
+    margin-top: 20px;
+
     }
 `
-/*const Image = styled.div`
-    width: 150px;
-    height: 150px;
-    background-color: #eaeaea;
-    border-radius: 5px;
-`*/
+const ProductInfo = styled.div`
+    width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 const Buy = styled.button`
-    width: 150px;
-    height: 30px;
+    width: 200px;
+    height: 60px;
     border-radius: 50px;
     font-family: 'Raleway';
     font-weight: 400;
-    font-size: 14px;
+    font-size: 22px;
     background-color: #a4d0bb;
     color: #ffffff;
     border: none;
