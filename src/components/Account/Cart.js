@@ -3,6 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { getCartData } from "../Context/axiosService";
 import UserContext from "../Context/UserContext";
+import Header from "../Header/Header";
 
 export default function Cart() {
 	const { user } = useContext(UserContext);
@@ -11,29 +12,7 @@ export default function Cart() {
 
 	return (
 		<Container>
-			<Header>
-				<User>
-					<ion-icon name="person-outline"></ion-icon>
-					{user !== "" ? (
-						<h1>Olá, {user}</h1>
-					) : (
-						<>
-							<h1>
-								{" "}
-								Faça
-								<Link to="/login"> Login </Link>
-								ou
-								<Link to="/singup"> Cadastre-se </Link>
-							</h1>
-						</>
-					)}
-				</User>
-				<Logo to="/" style={{ textDecoration: "none" }}>
-					Driven Mugs
-				</Logo>
-				<ion-icon name="cart-outline"></ion-icon>
-			</Header>
-
+			<Header />
 			<Reference>
 				<ion-icon name="chevron-forward-outline"></ion-icon>
 				<h1>Lista de produtos</h1>
@@ -62,28 +41,33 @@ export default function Cart() {
 				<Product>
 					<Image></Image>
 					<p>Caneca git commands</p>
-					<div>
+					<Price>
 						<h1>R$ 39,90</h1>
-						<Remover>Remover</Remover>
-					</div>
+						<Remover>
+							<ion-icon name="trash-outline"></ion-icon>
+						</Remover>
+					</Price>
 				</Product>
 				<Product>
 					<Image></Image>
 					<p>Caneca git commands</p>
-					<div>
+					<Price>
 						<h1>R$ 39,90</h1>
-						<Remover>Remover</Remover>
-					</div>
+						<Remover>
+							<ion-icon name="trash-outline"></ion-icon>
+						</Remover>
+					</Price>
 				</Product>
 				<Product>
 					<Image></Image>
 					<p>Caneca git commands</p>
-					<div>
+					<Price>
 						<h1>R$ 39,90</h1>
-						<Remover>Remover</Remover>
-					</div>
+						<Remover>
+							<ion-icon name="trash-outline"></ion-icon>
+						</Remover>
+					</Price>
 				</Product>
-
 				<Buy onClick={() => Navigate("/checkout")}>Fechar Pedido</Buy>
 			</Products>
 		</Container>
@@ -91,44 +75,9 @@ export default function Cart() {
 }
 
 const Container = styled.div`
-	width: 100vw;
-	height: 100vh;
-	background-color: #eaeaea;
-`;
-const Header = styled.div`
 	width: 100%;
-	height: 70px;
-	background-color: #79a1b0;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	box-sizing: border-box;
-	padding-left: 20px;
-	padding-right: 20px;
-	ion-icon {
-		width: 24px;
-		height: 24px;
-		color: #eaeaea;
-		cursor: pointer;
-	}
-`;
-const User = styled.div`
-	display: flex;
-	align-items: center;
-	color: #eaeaea;
-	h1 {
-		font-family: "Raleway";
-		font-weight: 400;
-		font-size: 18px;
-		color: #eaeaea;
-		margin-left: 10px;
-	}
-`;
-const Logo = styled(Link)`
-	font-family: "Comfortaa";
-	font-weight: 400;
-	font-size: 20px;
-	color: #eaeaea;
+	height: 100%;
+	background-color: #eaeaea;
 `;
 const Reference = styled.div`
 	width: 100%;
@@ -152,17 +101,16 @@ const Reference = styled.div`
 `;
 const Products = styled.div`
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	padding-left: 20px;
 	padding-right: 20px;
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	overflow-x: scroll;
 `;
 const Product = styled.div`
-	width: 90vh;
-	height: 250px;
+	width: 100%;
+	height: 170px;
 	box-sizing: border-box;
 	padding: 10px;
 	border-radius: 5px;
@@ -178,18 +126,12 @@ const Product = styled.div`
 		font-weight: 400;
 		font-size: 14px;
 		color: #79a1b0;
-		line-height: 0;
 	}
 	h1 {
 		font-family: "Raleway";
 		font-weight: 400;
 		font-size: 20px;
 		color: #a4d0bb;
-		line-height: 0;
-	}
-	div {
-		align-items: center;
-		justify-content: center;
 	}
 `;
 
@@ -212,9 +154,14 @@ const Buy = styled.button`
 	border: none;
 	margin-top: 10px;
 `;
+const Price = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+`
 const Remover = styled.button`
-	width: 150px;
-	height: 30px;
+	height: 35px;
 	border-radius: 50px;
 	font-family: "Raleway";
 	font-weight: 400;
@@ -223,4 +170,8 @@ const Remover = styled.button`
 	color: #ffffff;
 	border: none;
 	margin-top: 10px;
+	ion-icon{
+		width: 24px;
+		height: 24px;
+	}
 `;
