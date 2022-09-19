@@ -7,26 +7,28 @@ async function getHomePage() {
 		const homePage = await axios.get(`${URI}/`);
 
 		return homePage;
-  } catch (error) {
-    console.error("Error: " + error.message);
-  }
+	} catch (error) {
+		console.error("Error: " + error.message);
+	}
 }
 
 async function getCartData(res) {
-  
-  try {
-    const cart = await axios.get(`${URI}/cart`);
-    
-    res.send(cart);
-  } catch (error) {
-    console.error("Error: " + error.message);
-    
-    
-  }
+	try {
+		const cart = await axios.get(`${URI}/cart`).then(() => {
+			return cart;
+		});
+	} catch (error) {
+		console.error("Error: " + error.message);
+	}
 }
-function AddCart(id) {
-	return <></>;
+async function AddCart(id) {
+	try {
+		const cart = await axios.get(`${URI}/cart`).then(() => {
+			return cart;
+		});
+	} catch (error) {
+		console.error("Error: " + error.message);
+	}
 }
-
 
 export { getHomePage, getCartData, AddCart };
