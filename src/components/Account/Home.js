@@ -55,74 +55,40 @@ export default function Home() {
 }
 
 const Container = styled.div`
-    width: 100vw;
-    height: 100vh;
-    background-color: #eaeaea;
-`
-const Header = styled.div`
-    width: 100%;
-    height: 70px;
-    background-color: #79a1b0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    padding-left: 20px;
-    padding-right: 20px;
-    ion-icon{
-        width: 24px;
-        height: 24px;
-        color: #eaeaea;
-        cursor: pointer;
-    }
-`
-const User = styled.div`
-    display: flex;
-    align-items: center;
-    color: #eaeaea;
-    h1{
-        font-family: 'Raleway';
-        font-weight: 400;
-        font-size: 18px;
-        color: #eaeaea;
-        margin-left: 10px;
-    }
-`
-const Logo = styled(Link)`
-    font-family: 'Comfortaa';
-    font-weight: 400;
-    font-size: 20px;
-    color: #eaeaea;
-`
+	width: 100vw;
+	height: 100vh;
+	background-color: #eaeaea;
+`;
+
 const Reference = styled.div`
-    width: 100%;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    padding-left: 20px;
-    h1{
-        font-family: 'Raleway';
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 1.5;
-        font-weight: 400;
-        font-size: 20px;
-        color: #79a1b0;
-    }
-    ion-icon{
-        color: #79a1b0;
-    }
-`
+	width: 100%;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	padding-left: 20px;
+	h1 {
+		font-family: "Raleway";
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 1.5;
+		font-weight: 400;
+		font-size: 20px;
+		color: #79a1b0;
+	}
+	ion-icon {
+		color: #79a1b0;
+	}
+`;
 const Products = styled.div`
-    width: 100%;
-    height: 500px;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-`
+	width: 100%;
+	height: 500px;
+	padding-left: 20px;
+	padding-right: 20px;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+`;
 const Product = styled.div`
     width: 170px;
     height: 250px;
@@ -162,14 +128,14 @@ const Product = styled.div`
     border-radius: 5px;
 `*/
 const Buy = styled.button`
-    width: 150px;
-    height: 30px;
-    border-radius: 50px;
-    font-family: 'Raleway';
-    font-weight: 400;
-    font-size: 14px;
-    background-color: #a4d0bb;
-    color: #ffffff;
-    border: none;
-    margin-top: 10px;
-`
+	width: 150px;
+	height: 30px;
+	border-radius: 50px;
+	font-family: "Raleway";
+	font-weight: 400;
+	font-size: 14px;
+	background-color: #a4d0bb;
+	color: #ffffff;
+	border: none;
+	margin-top: 10px;
+`;

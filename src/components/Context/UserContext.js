@@ -8,8 +8,10 @@ export function UserProvider({children}){
   const [token, setToken] = useState(''); 
   const [user, setUser] = useState('');
 
+  const [cart, setCart] = useState('');
+
   return(
-    <UserContext.Provider value={{token, setToken, user, setUser}}>
+    <UserContext.Provider value={{token, setToken, user, setUser, cart, setCart}}>
       {children}
     </UserContext.Provider>
   )
